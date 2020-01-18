@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const   express = require('express'),
         TelegramBot = require('node-telegram-bot-api'),
         Airtable = require('airtable'),
@@ -5,11 +7,9 @@ const   express = require('express'),
         app = express(),
         port = 8000
 
-const   token = '995867439:AAEnCnqZA1Y7GKelnuR8XFNW9smKWeUKGcE',
+const   token = process.env.TELEGRAMTOKEN,
         bot = new TelegramBot(token, {polling: true}),
-        base = new Airtable({apiKey: 'keyNwyXr6NXOhOtzx'}).base('appak86GAF1NsRy4o');
-
-
+        base = new Airtable({apiKey: process.env.AIRAPIKEY}).base(process.env.AIRBASEID);
 
 bot.onText(/\/start/, (msg) => {
 
